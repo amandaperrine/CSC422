@@ -31,12 +31,21 @@ public class PetDatabase {
                 case 2:
                     addPets();
                     break;
+                case 3:
+                    updatePet();
+                    break;
+                case 4:
+                    removePet();
+                    break;
                 case 5:
                     searchPetsByName();
                     break;
                 case 6:
                     searchPetsByAge();
                     break;
+                case 7:
+                    System.out.print("Goodbye!");
+                    return;
             }//End of switch statements
 
         } //End of while loop
@@ -92,6 +101,49 @@ public class PetDatabase {
             pets[petCount] = addingNewPet;
             petCount++;
         }//End of while loop
+    }
+
+    //Case 3: update an existing pet
+    private static void updatePet() {
+        showAllPets();
+
+        System.out.print("\nEnter the pet ID you want to update: ");
+        int ID = s.nextInt();
+        String oldName = pets[ID].getName();
+        int oldAge = pets[ID].getAge();
+        s.nextLine();
+        System.out.print("Enter new name and new age: ");
+        String newNameAge = s.nextLine();
+        String name;
+        int n = 0;
+        while (newNameAge.charAt(n) != ' ') {
+            n++;
+        }
+        name = newNameAge.substring(0, n);
+        int age = Integer.parseInt(newNameAge.substring(n + 1));
+
+        pets[ID].setName(name);
+        pets[ID].setAge(age);
+
+        System.out.println("\n" + oldName + " " + oldAge + " changed to " + pets[ID].getName() + " " + pets[ID].getAge() + "\n");
+    }
+
+    //Case 4: remove an existing pet
+    private static void removePet() {
+        showAllPets();
+
+        System.out.print("\nEnter the pet ID to remove: ");
+        int ID = s.nextInt();
+        Pet removePet = pets[ID];
+
+        //For loop
+        for (int k = ID; k < petCount; k++) {
+            pets[k] = pets[k + 1];
+        }//End of for loop
+
+        System.out.print(removePet.getName() + " " + removePet.getAge() + " is removed.\n");
+        pets[petCount] = null;
+        petCount--;
     }
 
     //Case 5: search pets by name
