@@ -31,6 +31,12 @@ public class PetDatabase {
                 case 2:
                     addPets();
                     break;
+                case 5:
+                    searchPetsByName();
+                    break;
+                case 6:
+                    searchPetsByAge();
+                    break;
             }//End of switch statements
 
         } //End of while loop
@@ -88,5 +94,32 @@ public class PetDatabase {
         }//End of while loop
     }
 
+    //Case 5: search pets by name
+    private static void searchPetsByName() {
+        System.out.print("\nEnter a name to search: ");
+        String nameSearch = input.next();
+
+        //For loop
+        for (int j = 0; j < petCount; j++) {
+            if (pets[j].getName().equalsIgnoreCase(nameSearch)) {
+                System.out.printf("\n%3s %10s %4s\n", "ID", "Name", "Age");
+                System.out.print(" " + "|" + j + "|" + "     " + pets[j].getName() + "  " + "|" + pets[j].getAge() + "|");
+            }
+        }//End of for loop
+    }
+
+    //Case 6: search pets by age
+    private static void searchPetsByAge() {
+        System.out.print("\nEnter age to search: ");
+        int ageSearch = s.nextInt();
+
+        //For loop
+        for (int j = 0; j < petCount; j++) {
+            if (pets[j].getAge() == ageSearch) {
+                System.out.printf("\n%3s %10s %4s\n", "ID", "Name", "Age");
+                System.out.print(" " + "|" + j + "|" + "     " + pets[j].getName() + "  " + "|" + pets[j].getAge() + "|");
+            }
+        }//End of for loop
+    }
 
 }
