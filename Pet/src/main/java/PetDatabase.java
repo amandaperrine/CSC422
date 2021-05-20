@@ -104,9 +104,7 @@ public class PetDatabase {
             // get user input
             String input;
             input = s.nextLine();
-            if ("done".equals(input)) {
-                break;
-            }
+
             String[] data = input.split(" ");
             // check input data
             try {
