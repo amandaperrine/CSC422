@@ -38,8 +38,11 @@ public class PetDatabase {
                         addPet(pets, s);
                         break;
                     case 3:
-                        remove(pets, s);
+                        removePet(pets, s);
                         break;
+                    case 4:
+                        System.out.print("Goodbye!");
+                        return;
                     default:
                         break OUTER;
                 }
@@ -49,9 +52,6 @@ public class PetDatabase {
 
         // save database of pets
         saveData(pets, "pet.txt");
-        // print message and end program
-        System.out.println();
-        System.out.println("Goodbye!");
     }
 
     private static void saveData(ArrayList<Pet> pets, String filename) {
@@ -71,7 +71,7 @@ public class PetDatabase {
 
     }
 
-    private static void remove(ArrayList<Pet> pets, Scanner s) {
+    private static void removePet(ArrayList<Pet> pets, Scanner s) {
         System.out.println();
         // ask user for id to remove
         System.out.print("Enter the pet ID to remove: ");
@@ -104,6 +104,9 @@ public class PetDatabase {
             // get user input
             String input;
             input = s.nextLine();
+            if ("done".equals(input)) {
+                break;
+            }
             String[] data = input.split(" ");
             // check input data
             try {
@@ -120,11 +123,11 @@ public class PetDatabase {
                 } else {
                     // create a pet object
                     Pet p = new Pet(data[0], age);
-                    // check if database have space
+
                     if (pets.size() < 5) {
                         // add pet to database
                         pets.add(p);
-                    } else  {
+                    } else {
                         // print error message
                         System.out.print("Error: ");
                         System.out.println("Database is full.");
